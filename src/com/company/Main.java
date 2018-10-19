@@ -62,9 +62,22 @@ public class Main {
         return prices;
     }
 
-    public static void change(){
 
+    private static String[] createInventoryCSV() {
+        String[] prices=new String[500];
+        double max=250;
+        double min=50;
+        DecimalFormat format= new DecimalFormat(".##");
+        for(int i=0;i<500;i++){
+            double price=  ((Math.random() * ((max - min) + 1)) + min);
+            price=Math.round(Float.parseFloat(format.format(price)));
+            prices[i]=price+"";
+        }
+
+        return prices;
     }
+
+
 
 
 

@@ -86,11 +86,20 @@ public class Main {
     public static void main(String[] args) {
 
         //fix relative path issues
-        String allnames[]=parseCSV("./src/com/company/csv_data/CSV_Database_of_First_Names.csv");
+        String allnames[]=parseCSV("./src/com/company/csv_data/names.csv");
         String allfoods[]=parseCSV("./src/com/company/csv_data/food.csv");//need dataset for food;
         String allprices[]=createPricesCSV();//need to round them to two places
-        String allNumbers[]=parseCSV("./src/com/company/csv_data/phone.csv");
+        String allInventory[]=createInventoryCSV();
+        String allPhoneNumbers[]=parseCSV("./src/com/company/csv_data/phone.csv");
         String allBeers[]=parseCSV("./src/com/company/csv_data/beers.csv");
+        String allCustomerIds[]=parseCSV("./src/com/company/csv_data/customerID.csv");
+        String allBartenderIds[]=parseCSV("./src/com/company/csv_data/bartenderID.csv");
+        String allBarLicense[]=parseCSV("./src/com/company/csv_data/barLicense.csv");
+
+
+
+
+
 
 
 

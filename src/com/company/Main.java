@@ -62,7 +62,9 @@ public class Main {
         return prices;
     }
 
+    public static void change(){
 
+    }
 
 
 

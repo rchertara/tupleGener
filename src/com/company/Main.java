@@ -70,12 +70,14 @@ public class Main {
 
     public static void main(String[] args) {
 
-
-        String allnames[]=parseCSV("/Users/mobiledev/IdeaProjects/tupleGen/src/com/company/csv data/CSV_Database_of_First_Names.csv");
-//        String allfoods[]=parseCSV("");//need dataset for food;
+        //fix relative path issues
+        String allnames[]=parseCSV("./src/com/company/csv_data/CSV_Database_of_First_Names.csv");
+        String allfoods[]=parseCSV("./src/com/company/csv_data/food.csv");//need dataset for food;
         String allprices[]=createPricesCSV();//need to round them to two places
-        String allBeers[]=parseCSV("/Users/mobiledev/IdeaProjects/tupleGen/src/com/company/csv data/beers.csv");
-        System.out.println("");
+        String allNumbers[]=parseCSV("./src/com/company/csv_data/phone.csv");
+        String allBeers[]=parseCSV("./src/com/company/csv_data/beers.csv");
+
+
 
 
 

@@ -1,9 +1,6 @@
 package com.company;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -122,6 +119,53 @@ public class Main {
 
     }
 
+    private static void writeTabletoFile(String table[][],String FILENAME){
+        BufferedWriter bw = null;
+        FileWriter fw = null;
+
+        try {
+
+
+            String content="";
+            for(int i=0;i<table.length;i++){
+                for(int j=0;j<table[0].length;j++){
+                    content+=table[i][j]+",";
+                }
+                content+="\n";
+            }
+
+
+
+
+            fw = new FileWriter(FILENAME);
+            bw = new BufferedWriter(fw);
+            bw.write(content);
+
+            System.out.println("Done");
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+
+        } finally {
+
+            try {
+
+                if (bw != null)
+                    bw.close();
+
+                if (fw != null)
+                    fw.close();
+
+            } catch (IOException ex) {
+
+                ex.printStackTrace();
+
+            }
+
+        }
+    }
+
 
 
 
@@ -206,6 +250,14 @@ public class Main {
         Headers= new String[]{"name","bartenderId","State of Residence","Work Hours"};
         String Bartender[][]=generateTable(Headers,fieldsOfBartender);
         System.out.println();
+
+        writeTabletoFile(Bartender,"bartenderTable.csv");
+        writeTabletoFile(Works,"WorksTable.csv");
+        writeTabletoFile(Likes,"LikesTable.csv");
+        writeTabletoFile(Sells,"SellsTable.csv");
+        writeTabletoFile(Bar,"BarTable.csv");
+        writeTabletoFile(Drinker,"DrinkerTable.csv");
+        writeTabletoFile(frequents,"FrequentsTable.csv");
 
 
 

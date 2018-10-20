@@ -120,14 +120,39 @@ public class Main {
         String allCustomerIds[]=parseCSV("./src/com/company/csv_data/customerID.csv");
         String allBartenderIds[]=parseCSV("./src/com/company/csv_data/bartenderID.csv");
         String allBarLicense[]=parseCSV("./src/com/company/csv_data/barLicense.csv");
+        String allManf[]=parseCSV("./src/com/company/csv_data/barmanf.csv");
+        String allBarNames[]=parseCSV("./src/com/company/csv_data/barNames.csv");
+        String allStates[]=parseCSV("./src/com/company/csv_data/state.csv");
 
 
         ArrayList<String[]> fieldsOfFrequents= new ArrayList<String[]>();
         fieldsOfFrequents.add(allBarLicense);
         fieldsOfFrequents.add(allCustomerIds);
-        String frequentsHeaders[]={"barLicense","customerID"};
-        String frequents[][]=generateTable(frequentsHeaders,fieldsOfFrequents);
+        String Headers[]={"barLicense","customerID"};
+        String frequents[][]=generateTable(Headers,fieldsOfFrequents);
         System.out.println();
+
+        ArrayList<String[]> fieldsOfDrinker= new ArrayList<String[]>();
+        fieldsOfDrinker.add(allnames);
+        fieldsOfDrinker.add(allCustomerIds);
+        fieldsOfDrinker.add(allStates);
+        Headers= new String[]{"drinkerName", "customerID","State of Residence"};
+        String Drinker[][]=generateTable(Headers,fieldsOfDrinker);
+        System.out.println();
+
+        ArrayList<String[]> fieldsOfBar= new ArrayList<String[]>();
+        fieldsOfBar.add(allBarNames);
+        fieldsOfBar.add(allPhoneNumbers);
+        fieldsOfBar.add(allBarLicense);
+        fieldsOfBar.add(allBartenderIds);
+        fieldsOfBar.add(allStates);
+        Headers= new String[]{"barName", "phoneNumber","barLicense","bartenderID","State of Residence"};
+        String Bar[][]=generateTable(Headers,fieldsOfBar);
+        System.out.println();
+
+
+
+
 
 
 

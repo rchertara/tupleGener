@@ -110,8 +110,8 @@ public class Main {
         int max1=12;
 
         for(int i=0;i<500;i++){
-            String startHour=(Math.random() * ((max - min) + 1)) + min  +"";
-            String endHour=(Math.random() * ((max1 - min1) + 1)) + min1  +"";
+            String startHour=Math.round(Math.random() * ((max - min) + 1)) + min  +"";
+            String endHour=Math.round(Math.random() * ((max1 - min1) + 1)) + min1  +"";
             String workHourShift=startHour+"PM--"+endHour+"PM";
             hours[i]=workHourShift;
         }
@@ -189,6 +189,27 @@ public class Main {
         Headers= new String[]{"Person Name", "Beer","Food"};
         String Likes[][]=generateTable(Headers,fieldsOfLikes);
         System.out.println();
+
+        ArrayList<String[]> fieldsOfWorks= new ArrayList<String[]>();
+        fieldsOfWorks.add(allBartenderIds);
+        fieldsOfWorks.add(allBarLicense);
+        fieldsOfWorks.add(allWorkHours);
+        Headers= new String[]{"bartenderId","barLicense","Work Hours"};
+        String Works[][]=generateTable(Headers,fieldsOfWorks);
+        System.out.println();
+
+        ArrayList<String[]> fieldsOfBartender= new ArrayList<String[]>();
+        fieldsOfBartender.add(allnames);
+        fieldsOfBartender.add(allBartenderIds);
+        fieldsOfBartender.add(allStates);
+        fieldsOfBartender.add(allWorkHours);
+        Headers= new String[]{"name","bartenderId","State of Residence","Work Hours"};
+        String Bartender[][]=generateTable(Headers,fieldsOfBartender);
+        System.out.println();
+
+
+
+
 
 
 

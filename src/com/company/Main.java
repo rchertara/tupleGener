@@ -5,10 +5,33 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 
 public class Main {
 
 
+
+    public static String[][] generateTable(String[] headers, ArrayList<String[]> allArrays){
+
+        String table[][]= new String[1000][allArrays.size()];
+
+        for(int i=0;i<1000;i++){
+            for(int j=0;j<allArrays.size();j++){
+                if(i==0){
+                    table[i][j]=headers[j];
+                }
+                else{
+                    String [] oneField=allArrays.get(j);
+                    String value=oneField[(int) (Math.random()*(oneField.length-1))];
+                    table[i][j]=value;
+                }
+            }
+        }
+
+
+
+        return table;
+    }
 
     public static String[] parseCSV(String csvFile){
 
@@ -83,6 +106,8 @@ public class Main {
 
 
 
+
+
     public static void main(String[] args) {
 
         //fix relative path issues
@@ -97,6 +122,12 @@ public class Main {
         String allBarLicense[]=parseCSV("./src/com/company/csv_data/barLicense.csv");
 
 
+        ArrayList<String[]> fieldsOfFrequents= new ArrayList<String[]>();
+        fieldsOfFrequents.add(allBarLicense);
+        fieldsOfFrequents.add(allCustomerIds);
+        String frequentsHeaders[]={"barLicense","customerID"};
+        String frequents[][]=generateTable(frequentsHeaders,fieldsOfFrequents);
+        System.out.println();
 
 
 

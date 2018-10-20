@@ -100,6 +100,28 @@ public class Main {
         return prices;
     }
 
+    private static String[] createWorkHours() {
+        String[] hours=new String[500];
+
+        int min=1;
+        int max=3;
+
+        int min1=4;
+        int max1=12;
+
+        for(int i=0;i<500;i++){
+            String startHour=(Math.random() * ((max - min) + 1)) + min  +"";
+            String endHour=(Math.random() * ((max1 - min1) + 1)) + min1  +"";
+            String workHourShift=startHour+"PM--"+endHour+"PM";
+            hours[i]=workHourShift;
+        }
+
+
+
+        return hours;
+
+    }
+
 
 
 
@@ -123,7 +145,7 @@ public class Main {
         String allManf[]=parseCSV("./src/com/company/csv_data/barmanf.csv");
         String allBarNames[]=parseCSV("./src/com/company/csv_data/barNames.csv");
         String allStates[]=parseCSV("./src/com/company/csv_data/state.csv");
-
+        String allWorkHours[]=createWorkHours();
 
         ArrayList<String[]> fieldsOfFrequents= new ArrayList<String[]>();
         fieldsOfFrequents.add(allBarLicense);
@@ -150,6 +172,29 @@ public class Main {
         String Bar[][]=generateTable(Headers,fieldsOfBar);
         System.out.println();
 
+        ArrayList<String[]> fieldsOfSells= new ArrayList<String[]>();
+        fieldsOfSells.add(allBarLicense);
+        fieldsOfSells.add(allBeers);
+        fieldsOfSells.add(allprices);
+        fieldsOfSells.add(allBarNames);
+        fieldsOfSells.add(allInventory);
+        Headers= new String[]{"barLciense", "Beer","Price","barName","Inventory"};
+        String Sells[][]=generateTable(Headers,fieldsOfSells);
+        System.out.println();
+
+        ArrayList<String[]> fieldsOfLikes= new ArrayList<String[]>();
+        fieldsOfLikes.add(allnames);
+        fieldsOfLikes.add(allBeers);
+        fieldsOfLikes.add(allfoods);
+        Headers= new String[]{"Person Name", "Beer","Food"};
+        String Likes[][]=generateTable(Headers,fieldsOfLikes);
+        System.out.println();
+
+
+
+
+
+
 
 
 
@@ -164,4 +209,6 @@ public class Main {
 
 
     }
+
+
 }

@@ -108,7 +108,7 @@ public class Main {
 
         for(int i=0;i<500;i++){
             String startHour=Math.round(Math.random() * ((max - min) + 1)) + min  +"";
-            String endHour=Math.round(Math.random() * ((max1 - min1) + 1)) + min1  +"";
+            String endHour=Math.round(Math.random() * ((max1 - min1))) + min1  +"";
             String workHourShift=startHour+"PM--"+endHour+"PM";
             hours[i]=workHourShift;
         }

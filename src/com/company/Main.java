@@ -11,9 +11,9 @@ public class Main {
 
     public static String[][] generateTable(String[] headers, ArrayList<String[]> allArrays){
 
-        String table[][]= new String[469][allArrays.size()];
+        String table[][]= new String[457][allArrays.size()];
 
-        for(int i=0;i<468;i++){
+        for(int i=0;i<455;i++){
             for(int j=0;j<allArrays.size();j++){
                 if(i==0){
                     table[i][j]=headers[j];
@@ -22,12 +22,18 @@ public class Main {
 
                     String [] oneField=allArrays.get(j);
                     String value="";
-                    int max=oneField.length-1;
-                    int min=0;
 
-                    value = oneField[i];
-                    table[i][j] = value;
+                    if(j==2) {
+                        int max=oneField.length-1;
+                        int min=0;
+                        value = oneField[(int) ((Math.random() * ((max - min) + 1)) + min)];
+                        table[i][j] = value;
+                    }
+                    else{
+                        value = oneField[i];
+                        table[i][j] = value;
 
+                    }
 
                 }
             }

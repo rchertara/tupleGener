@@ -11,9 +11,9 @@ public class Main {
 
     public static String[][] generateTable(String[] headers, ArrayList<String[]> allArrays){
 
-        String table[][]= new String[457][allArrays.size()];
+        String table[][]= new String[2500][allArrays.size()];
 
-        for(int i=0;i<457;i++){
+        for(int i=0;i<2500;i++){
             for(int j=0;j<allArrays.size();j++){
                 if(i==0){
                     table[i][j]=headers[j];
@@ -22,22 +22,17 @@ public class Main {
 
                     String [] oneField=allArrays.get(j);
                     String value="";
+                    int max=oneField.length-1;
+                    int min=0;
+                    value = oneField[(int) ((Math.random() * ((max - min) + 1)) + min)];
+                    table[i][j] = value;
 
-                    if(j==2) {
-                        int max=oneField.length-1;
-                        int min=0;
-                        value = oneField[(int) ((Math.random() * ((max - min) + 1)) + min)];
-                        table[i][j] = value;
-                    }
-                    else{
-                        value = oneField[i];
-                        table[i][j] = value;
 
                     }
 
                 }
             }
-        }
+
 
 
 
@@ -237,23 +232,24 @@ public class Main {
 
 
 //
-        ArrayList<String[]> fieldsOfBar= new ArrayList<String[]>();
-        fieldsOfBar.add(allBarNames);
-        fieldsOfBar.add(allBarLicense);
-        //fieldsOfBar.add(allBartenderIds);
-        fieldsOfBar.add(allStates);
-        String []Headers= new String[]{"barName","barLicense","State of Residence"};
-        String Bar[][]=generateTable(Headers,fieldsOfBar);
-        writeTabletoFile(Bar,"barTable");
-        System.out.println();
+//        ArrayList<String[]> fieldsOfBar= new ArrayList<String[]>();
+//        fieldsOfBar.add(allBarNames);
+//        fieldsOfBar.add(allBarLicense);
+//        //fieldsOfBar.add(allBartenderIds);
+//        fieldsOfBar.add(allStates);
+//        String []Headers= new String[]{"barName","barLicense","State of Residence"};
+//        String Bar[][]=generateTable(Headers,fieldsOfBar);
+//        writeTabletoFile(Bar,"barTable");
+//        System.out.println();
 //
 //        ArrayList<String[]> fieldsOfSells= new ArrayList<String[]>();
 //        fieldsOfSells.add(allBarLicense);
 //        fieldsOfSells.add(allBeers);
+//        fieldsOfSells.add(allfoods);
 //        fieldsOfSells.add(allprices);
 //        fieldsOfSells.add(allBarNames);
 //        fieldsOfSells.add(allInventory);
-//        String [] Headers= new String[]{"barLicense", "Beer","Price","barName","Inventory"};
+//        String [] Headers= new String[]{"barLicense", "Beer","Food","Price","barName","Inventory"};
 //        String Sells[][]=generateTable(Headers,fieldsOfSells);
 //        writeTabletoFile(Sells,"SellsTable.csv");
 //        System.out.println();
@@ -274,13 +270,12 @@ public class Main {
 //        String [] Headers= new String[]{"bartenderId","barLicense","Work Hours"};
 //        String Works[][]=generateTable(Headers,fieldsOfWorks);
 //        writeTabletoFile(Works,"worksTable.csv");
-//        System.out.println();
+//        System.out.println(); figure out work
 //
 //        ArrayList<String[]> fieldsOfBartender= new ArrayList<String[]>();
 //        fieldsOfBartender.add(allbartenderNames);
 //        fieldsOfBartender.add(allBartenderIds);
 //        fieldsOfBartender.add(allStates);
-//        fieldsOfBartender.add(allWorkHours);
 //        String []Headers= new String[]{"name","bartenderId","State of Residence","Work Hours"};
 //        String Bartender[][]=generateTable(Headers,fieldsOfBartender);
 //        writeTabletoFile(Bartender,"bartenderTable");

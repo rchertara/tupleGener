@@ -1,9 +1,14 @@
 package com.company;
 
 import java.io.*;
+import java.sql.Timestamp;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
+
+// nextInt is normally exclusive of the top value,
+// so add 1 to make it inclusive
 
 public class Main {
 
@@ -11,9 +16,9 @@ public class Main {
 
     public static String[][] generateTable(String[] headers, ArrayList<String[]> allArrays){
 
-        String table[][]= new String[2500][allArrays.size()];
+        String table[][]= new String[20000][allArrays.size()];
 
-        for(int i=0;i<2500;i++){
+        for(int i=0;i<20000;i++){
             for(int j=0;j<allArrays.size();j++){
                 if(i==0){
                     table[i][j]=headers[j];
@@ -22,11 +27,17 @@ public class Main {
 
                     String [] oneField=allArrays.get(j);
                     String value="";
-                    int max=oneField.length-1;
-                    int min=0;
-                    value = oneField[(int) ((Math.random() * ((max - min) + 1)) + min)];
-                    table[i][j] = value;
 
+                    if(j==0){
+                        value = oneField[i];
+                        table[i][j] = value;
+                    }
+                    else{
+                        int max = oneField.length - 1;
+                        int min = 0;
+                        value = oneField[(int) ((Math.random() * ((max - min) + 1)) + min)];
+                        table[i][j] = value;
+                    }
 
                     }
 
@@ -109,22 +120,54 @@ public class Main {
     private static String[] createWorkHours() {
         String[] hours=new String[500];
 
-        int min=1;
-        int max=3;
+        int min=11;
+        int max=11;
 
-        int min1=4;
-        int max1=12;
+        int min1=11;
+        int max1=11;
 
         for(int i=0;i<500;i++){
-            String startHour=Math.round(Math.random() * ((max - min) + 1)) + min  +"";
+            String startHour=Math.round(Math.random() * ((max - min))) + min  +"";
             String endHour=Math.round(Math.random() * ((max1 - min1))) + min1  +"";
-            String workHourShift=startHour+"PM--"+endHour+"PM";
+            String workHourShift=startHour+"AM--"+endHour+"PM";
             hours[i]=workHourShift;
         }
 
 
 
         return hours;
+
+    }
+    private static String[] createTimeStamps(){
+        String [] timeStamps=new String[20000];
+        //'YYYY-MM-DD HH:MM:SS' format. The supported range is '1000-01-01 00:00:00' to '9999-12-31 23:59:59'.
+
+        String HH []={"11","12","13","14","15","16","17","18","19","23"};
+        String MM []= {"01","02","03","04","05","06","07","08","09","10","11","12"};
+        String SS[]=new String[60];
+        for(int i=0;i<60;i++){
+            if(i<10){
+                SS[i]="0"+i;
+            }
+            else{
+                SS[i]=i+"";
+            }
+        }
+
+        int max=0;
+        int min=0;
+        for(int i=0;i<timeStamps.length;i++){
+            max=HH.length-1;
+            String hours=HH[(int) ((Math.random() * ((max - min) + 1)) + min)];
+            max=MM.length-1;
+            String months=MM[(int) ((Math.random() * ((max - min) + 1)) + min)];
+            max=SS.length-1;
+            String seconds=SS[(int) ((Math.random() * ((max - min) + 1)) + min)];
+
+            timeStamps[i]=hours+":"+months+":"+seconds;
+        }
+
+        return timeStamps;
 
     }
 
@@ -201,10 +244,26 @@ public class Main {
         String allCustomerIds[]=parseCSV("./src/com/company/csv_data/customerID.csv");
         String allBartenderIds[]=parseCSV("./src/com/company/csv_data/bartenderID.csv");
         String allBarLicense[]=parseCSV("./src/com/company/csv_data/barLicense.csv");
-        String allManf[]=parseCSV("./src/com/company/csv_data/barmanf.csv");
         String allBarNames[]=parseCSV("./src/com/company/csv_data/barNames.csv");
         String allStates[]=parseCSV("./src/com/company/csv_data/state.csv");
         String allWorkHours[]=createWorkHours();
+        String allTransID[]=parseCSV("./src/com/company/csv_data/transactionID.csv");
+        String allTimeStamps[]=createTimeStamps();
+
+
+//        ArrayList<String[]> fieldsOfTransactions= new ArrayList<String[]>();
+//        fieldsOfTransactions.add(allTransID);
+//        fieldsOfTransactions.add(allBarLicense);
+//        fieldsOfTransactions.add(allCustomerIds);
+//        fieldsOfTransactions.add(allBeers);
+//        fieldsOfTransactions.add(allfoods);
+//        fieldsOfTransactions.add(allTimeStamps);
+//        String [] Headers= new String[]{"Transaction ID", "Bar License","Customer ID","Beer","Food","Time Issued"};
+//        String Drinker[][]=generateTable(Headers,fieldsOfTransactions);
+//        writeTabletoFile(Drinker,"TransactionTable.csv");
+//        System.out.println();
+
+
 
 /*
         //
@@ -237,9 +296,10 @@ public class Main {
 //        fieldsOfBar.add(allBarLicense);
 //        //fieldsOfBar.add(allBartenderIds);
 //        fieldsOfBar.add(allStates);
-//        String []Headers= new String[]{"barName","barLicense","State of Residence"};
+//        fieldsOfBar.add(allWorkHours);
+//        String []Headers= new String[]{"barName","barLicense","State of Residence","Hours of Operation"};
 //        String Bar[][]=generateTable(Headers,fieldsOfBar);
-//        writeTabletoFile(Bar,"barTable");
+//        writeTabletoFile(Bar,"barTable.csv");
 //        System.out.println();
 //
 //        ArrayList<String[]> fieldsOfSells= new ArrayList<String[]>();

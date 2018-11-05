@@ -3,3 +3,4 @@
 *.iws
 /.metadata/
 out/
+venv/
